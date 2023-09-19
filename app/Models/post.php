@@ -9,6 +9,8 @@ class post extends Model
 {
     use HasFactory;
     protected $guarded=[];
+    protected $table="posts";
+    protected $fillable=['file'];
 
     public function posts(){
         return $this->belongsTo(post::class);

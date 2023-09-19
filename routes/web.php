@@ -34,6 +34,8 @@ Route::prefix("post")->group(function () {
     Route::get('/', [PostController::class, 'index'])->name('post');
     Route::get('/show/{post}', [PostController::class, 'show'])->name('showPost');
 
+    // Route::post('/insertFile}', [PostController::class, 'insert'])->name('insertFile');
+
     Route::middleware(['auth'])->group(function () {
         Route::get('/like/{post}', [ PostController::class, 'like'])->name('likePost');
         Route::get('/dislike/{post}', [ PostController::class, 'dislike'])->name('dislikePost');

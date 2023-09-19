@@ -12,18 +12,26 @@
                     @error('title')
                     <div class="text-red-400">{{$message}}</div>
                     @enderror
+
                 <label for="subject">Subject:</label>
                 <input class="bg-white border-blue-400 rounded-sm" type="text" name="subject" id="subject" value="{{old('subject')}}">
                     @error('subject')
                     <div class="text-red-400">{{$message}}</div>
                     @enderror
-                <label for="content">Content</label>
+
+                <label for="content">Content:</label>
                 <textarea class="bg-white border-blue-400 rounded-sm" name="content" id="content" cols="30" rows="10">
                 </textarea>
                     @error('content')
                         <div class="text-red-400">{{$message}}</div>
                     @enderror
-                    
+
+                <label for="file">File:</label>
+                <input class="bg-white border-blue-400 rounded-sm" type="file" name="file" id="file" enctype="multipart/form-data" autofocus>
+                    @error('file')
+                        <div class="text-red-400">{{$message}}</div>
+                    @enderror
+                
                 <button type="submit">Create</button>
             </form>
         </main>

@@ -21,12 +21,36 @@ class postController extends Controller
         return view('post.create');
     }
 
+
+
     public function store() {
+
+
         $data = request()->validate([
             'title' => ['required', 'min:1', 'max:255'],
             'subject' => ['required', 'min:1', 'max:255', 'unique:posts,subject'],
             'content' => ['required', 'min:1'],
+            'file' => ['required', 'mimes:jpg,png,jpeg', 'max:5048'],
         ]);
+
+        function insert(Request $request){
+            $request->validate([
+                'file' => ['required', 'mimes:jpg,png,jpeg', 'max:5048'],
+            ]);
+
+            $file = $request->file('file');
+            $file->move('images', $file->getClientOriganalName());
+            $file_name = $file->getClientOriganalName();
+
+            $insert = new post();
+            $insert->file = $file_name;
+            $insert->save();
+        }
+
+
+        // $newImageName = time() . '-' . $data = request()->title . '-' . $data = request()->file->extension();
+
+        // $data = request()->file->move(public_path('images'), $newImageName);
 
         $data['user_id'] = Auth::user()->id;
         
@@ -53,6 +77,7 @@ class postController extends Controller
             'title' => ['required', 'min:1', 'max:255'],
             'subject' => ['required', 'min:1', 'max:255'],
             'content' => ['required', 'min:1'],
+            'file' => ['required', 'min:1', 'max:5048'],
         ]);
 
         $post->update($data);

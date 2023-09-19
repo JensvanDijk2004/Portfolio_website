@@ -18,6 +18,7 @@ class Posts extends Migration
             $table->string('title')->unique();
             $table->text('subject');
             $table->text('content');
+            $table->string('file');
             $table->integer('like')->default(0);
             $table->integer('dislike')->default(0);
             $table->integer('user_id');
